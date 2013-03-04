@@ -68,7 +68,7 @@ void GameArea::paintEvent( QPaintEvent * event ){
       for (int j=0; j<8 ; j++)
       {
           if(this->TABLERO_INTERNO[i][j]!=-1)
-         {  // Pintar un circulo pequeño con un color de acuerdo al numero interno.
+         {  // Pintar un circulo pequeÃ±o con un color de acuerdo al numero interno.
               painter.setPen(Qt::black);
               painter.setBrush(this->getColor(this->TABLERO_INTERNO[i][j]));
               painter.drawEllipse(j*59+25,i*59+25,30,30);

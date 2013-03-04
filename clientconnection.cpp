@@ -2,7 +2,7 @@
 
 ClientConnection::ClientConnection()
 {
-    //READ: Instanciar Socket y conectar las señales, la
+    //READ: Instanciar Socket y conectar las seÃ±ales, la
     socket = new QTcpSocket(this);
     canPlay = false;
     connect(socket, SIGNAL(connected()), this, SLOT(conectado()));
@@ -48,6 +48,10 @@ void ClientConnection::parseMessage(QString msg) {
            msg = msg.mid(9);
            msg = msg.mid(0,msg.length()-2);
            emit newMessage(this,"NICKLIST",msg);
+       }
+       if(msg.startsWith("PLAY")){
+           emit startGame();
+           emit newMessage(this, "PLAY", "You can now play");
        }
        if(msg.startsWith("NEWNICK:"))
        {
@@ -106,7 +110,7 @@ void ClientConnection::sendMessage(QString msg) {
 
 }
 void ClientConnection::disconnect() {
-       //READ: Emitir una señal al server para desconectarse
+       //READ: Emitir una seÃ±al al server para desconectarse
      this->estaConectado =false;
      this->socket->close();
      emit disconnected(this, nick);

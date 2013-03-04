@@ -29,7 +29,7 @@ private:
 
 private slots:
         //READ: Este metodo privado es el que se ejecuta cuando el SOCKET de esta
-        //conexion recibe la señal de nuevos datos en la conexion y este metodo revisa
+        //conexion recibe la seÃ±al de nuevos datos en la conexion y este metodo revisa
         // hasta encontrar \n\r y luego llama a ParseMessage
         void recv();
         //READ; metodo que se ejecuta cuando se confirma la conexion del server
@@ -39,16 +39,16 @@ private slots:
 
 public slots:
 
-        //READ: Metodo que se usa cuando el socket de esta conexion recibe una señal de
+        //READ: Metodo que se usa cuando el socket de esta conexion recibe una seÃ±al de
         // Desconexion.
         void disconnect();
         void startGame(){canPlay = true;}
         void stopPlayin(){canPlay = false;}
 
 signals:
-        //READ: Estas son las señales que una conexion puede EMITIR
-        //estas señales se emiten a la pantalla principal
-        // TODAS estas señales DEBEN indicar la conexion en curso que emite la señal
+        //READ: Estas son las seÃ±ales que una conexion puede EMITIR
+        //estas seÃ±ales se emiten a la pantalla principal
+        // TODAS estas seÃ±ales DEBEN indicar la conexion en curso que emite la seÃ±al
         void newMessage(ClientConnection*,QString,QString);
         void connected(ClientConnection*, QString);
         void disconnected(ClientConnection*, QString);

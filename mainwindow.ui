@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -72,6 +72,9 @@
         <height>20</height>
        </rect>
       </property>
+      <property name="text">
+       <string>localhost</string>
+      </property>
      </widget>
      <widget class="QLineEdit" name="lineEdit_Port">
       <property name="geometry">
@@ -81,6 +84,9 @@
         <width>61</width>
         <height>20</height>
        </rect>
+      </property>
+      <property name="text">
+       <string>7777</string>
       </property>
      </widget>
      <widget class="QPushButton" name="btnConnect">
@@ -121,6 +127,9 @@
         <height>20</height>
        </rect>
       </property>
+      <property name="text">
+       <string>JC</string>
+      </property>
      </widget>
      <widget class="QLabel" name="label">
       <property name="geometry">
@@ -145,6 +154,34 @@
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout"/>
+     </widget>
+     <widget class="QLabel" name="lblGO">
+      <property name="geometry">
+       <rect>
+        <x>580</x>
+        <y>120</y>
+        <width>151</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Pristina</family>
+        <pointsize>36</pointsize>
+       </font>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">backgound-color: green;</string>
+      </property>
+      <property name="text">
+       <string>GO!!</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
@@ -222,6 +259,19 @@ color: rgb(255, 0, 0);</string>
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>lineEdit_Nick</tabstop>
+  <tabstop>lineEdit_Server</tabstop>
+  <tabstop>lineEdit_Port</tabstop>
+  <tabstop>btnConnect</tabstop>
+  <tabstop>btnDisconnect</tabstop>
+  <tabstop>listWidget</tabstop>
+  <tabstop>textEdit</tabstop>
+  <tabstop>lineEdit_Mensaje</tabstop>
+  <tabstop>btnSalir</tabstop>
+  <tabstop>lineEdit</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

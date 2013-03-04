@@ -25,7 +25,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     this->Tablero->setFocusPolicy(Qt::TabFocus);
     this->ui->gridLayout->addWidget(this->Tablero,0,0,1,1);
-
+    setNotPlayable();
 }
 
 MainWindow::~MainWindow()
@@ -83,8 +83,10 @@ void MainWindow::procesarMensaje(ClientConnection *con, QString comando, QString
 
             i++;
         }
-
-
+    }
+    if(comando=="PLAY"){
+        setPlayable();
+        qDebug() << "it was this";
     }
     if(comando=="NEWNICK")
     {
@@ -202,7 +204,8 @@ void MainWindow::on_btnDisconnect_clicked()
 void MainWindow::keyPressEvent( QKeyEvent *event )
 {
    // Revisar cual tecla se presiono ?
-    if (this->Conexion->estaConectado)
+    // Aqui se agrega la condicion de canPlay()
+    if (this->Conexion->estaConectado && canPlayUI)
     {
        switch(event->key())
        {
