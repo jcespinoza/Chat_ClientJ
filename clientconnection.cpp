@@ -93,14 +93,15 @@ void ClientConnection::parseMessage(QString msg) {
            msg = msg.mid(0,msg.length()-2);
            emit newMessage(this,"INFO",msg);
        }
-
-
-
+       if(msg.startsWith(("REMOVEOK:"))){
+           msg = msg.mid(9);
+           msg = msg.mid(0,msg.length()-2);
+           emit newMessage(this,"REMOVE",msg);
+       }
       /*          int start = msg.indexOf("Nick: ");
                 int end = msg.indexOf("\n", start);
                 QString newNick = msg.mid(start + 6, end - start - 6);
 */
-
 }
 void ClientConnection::sendMessage(QString msg) {
     //READ: Si el socket de la conexion es valido entonces enviar el mensaje

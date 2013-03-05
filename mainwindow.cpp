@@ -152,6 +152,19 @@ void MainWindow::procesarMensaje(ClientConnection *con, QString comando, QString
         this->Tablero->update();
     }
 
+    if(comando=="REMOVEOK"){
+        int numjugador, fila,col;
+        bool band;
+        numjugador = mensaje.mid(0,1).toInt(&band,10);
+        fila = mensaje.mid(2,1).toInt(&band,10);
+        col = mensaje.mid(4,1).toInt(&band,10);
+        // Ya se el jugador, la fila y columna, ahora setearlo
+        // en el GameArea o sea el tablero
+        this->Tablero->setValor(fila,col,-1);
+        // redibuje el Tablero
+        this->Tablero->update();
+    }
+
 
 }
 void MainWindow::seConecto(ClientConnection *con, QString nick)
@@ -207,6 +220,8 @@ void MainWindow::keyPressEvent( QKeyEvent *event )
     // Aqui se agrega la condicion de canPlay()
     if (this->Conexion->estaConectado && canPlayUI)
     {
+        QString tempf, tempc;
+        int f, c;
        switch(event->key())
        {
 
@@ -241,9 +256,8 @@ void MainWindow::keyPressEvent( QKeyEvent *event )
           break;
           // Cuando de enter hay que mandar el mensaje del movimiento
           case Qt::Key_Return :
-                 int f = this->Tablero->getCurrentfila();
-                 int c = this->Tablero->getCurrentcolumna();
-                 QString tempf,tempc;
+                 f = this->Tablero->getCurrentfila();
+                 c = this->Tablero->getCurrentcolumna();
                  tempf.setNum(f,10);
                  tempc.setNum(c,10);
 
@@ -252,6 +266,15 @@ void MainWindow::keyPressEvent( QKeyEvent *event )
                  // Importante notar que aun asi, NO se cambia nada de tablero
                  // mientras no recibamos el Ok del server (MOVEOK)
               break;
+       case Qt::Key_Space:
+           f = this->Tablero->getCurrentfila();
+           c = this->Tablero->getCurrentcolumna();
+           tempf.setNum(f,10);
+           tempc.setNum(c,10);
+           this->Conexion->sendMessage("REMOVE:"+tempf+":"+tempc + "\n\r");
+           break;
+       default:
+           break;
       }
    }
    this->Tablero->update();
