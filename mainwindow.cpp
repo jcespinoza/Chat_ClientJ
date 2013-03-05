@@ -64,7 +64,6 @@ void MainWindow::on_btnConnect_clicked()
 void MainWindow::procesarMensaje(ClientConnection *con, QString comando, QString mensaje)
 {
 
-
     //Dependiendo del comando hacer ciertas cosas, por ejemplo
 //    this->ui->textEdit->append("Comando recibido:" + comando + ">>" + mensaje);
     if(comando=="NICKLIST")
@@ -84,9 +83,10 @@ void MainWindow::procesarMensaje(ClientConnection *con, QString comando, QString
             i++;
         }
     }
-    if(comando=="PLAY"){
+    if(comando=="PLAY")
         setPlayable();
-        qDebug() << "it was this";
+    if(comando == "STOP"){
+        setNotPlayable();
     }
     if(comando=="NEWNICK")
     {
@@ -131,6 +131,7 @@ void MainWindow::procesarMensaje(ClientConnection *con, QString comando, QString
         this->ui->textEdit->append("Reset el Game");
         this->Tablero->reset();
         this->Tablero->update();
+         setPlayable();
 
     }
     if(comando=="INFO")
@@ -153,15 +154,14 @@ void MainWindow::procesarMensaje(ClientConnection *con, QString comando, QString
     }
 
     if(comando=="REMOVEOK"){
-        int numjugador, fila,col;
+        int fila,col;
         bool band;
-        numjugador = mensaje.mid(0,1).toInt(&band,10);
         fila = mensaje.mid(2,1).toInt(&band,10);
+        qDebug() << "deleting at fila: " << fila;
         col = mensaje.mid(4,1).toInt(&band,10);
-        // Ya se el jugador, la fila y columna, ahora setearlo
-        // en el GameArea o sea el tablero
+        qDebug() << "deleting at col: " << col;
+
         this->Tablero->setValor(fila,col,-1);
-        // redibuje el Tablero
         this->Tablero->update();
     }
 

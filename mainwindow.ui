@@ -173,9 +173,6 @@
       <property name="autoFillBackground">
        <bool>false</bool>
       </property>
-      <property name="styleSheet">
-       <string notr="true">backgound-color: green;</string>
-      </property>
       <property name="text">
        <string>GO!!</string>
       </property>

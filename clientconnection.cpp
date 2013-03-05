@@ -50,8 +50,11 @@ void ClientConnection::parseMessage(QString msg) {
            emit newMessage(this,"NICKLIST",msg);
        }
        if(msg.startsWith("PLAY")){
-           emit startGame();
            emit newMessage(this, "PLAY", "You can now play");
+       }
+       if(msg.startsWith("STOP")){
+           emit newMessage(this, "STOP", "Game Finished");
+           return;
        }
        if(msg.startsWith("NEWNICK:"))
        {
@@ -96,7 +99,7 @@ void ClientConnection::parseMessage(QString msg) {
        if(msg.startsWith(("REMOVEOK:"))){
            msg = msg.mid(9);
            msg = msg.mid(0,msg.length()-2);
-           emit newMessage(this,"REMOVE",msg);
+           emit newMessage(this,"REMOVEOK",msg);
        }
       /*          int start = msg.indexOf("Nick: ");
                 int end = msg.indexOf("\n", start);

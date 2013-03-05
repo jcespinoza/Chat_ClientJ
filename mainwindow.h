@@ -37,7 +37,7 @@ public slots:
 
 private slots:
      void setPlayable(){canPlayUI = true;}
-     void setNotPlayable(){canPlayUI = true;}
+     void setNotPlayable(){canPlayUI = false;}
     void on_lineEdit_editingFinished();
     void on_btnDisconnect_clicked();
     void on_lineEdit_Mensaje_returnPressed();
